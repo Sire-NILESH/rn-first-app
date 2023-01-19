@@ -21,13 +21,25 @@ const styles = StyleSheet.create({
     marginVertical: 16,
     borderRadius: 14,
     backgroundColor: "white",
+    overflow: "hidden",
+    // SHADOW
+    shadowColor: "#999",
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.02,
+    shadowRadius: 2,
+    elevation: 5,
+    // -SHADOW-
+    marginHorizontal: 10,
   },
   goalsContainer__goalItem__goalText: {
+    borderRadius: 14,
     paddingHorizontal: 20,
     paddingVertical: 32,
     text: "#333",
     fontSize: 18,
-    borderRadius: 14,
   },
   iosWorkAroundPressedStyle: {
     backgroundColor: "#fed7aa",
