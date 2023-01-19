@@ -20,8 +20,8 @@ const AddGoalInput = (props) => {
   }
 
   return (
-    <View>
-      <Modal visible={props.modalVisible} animationType="slide">
+    <Modal visible={props.modalVisible} animationType="slide">
+      <View style={styles.modalContainer}>
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputContainer__input}
@@ -48,12 +48,18 @@ const AddGoalInput = (props) => {
             />
           </View>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  modalContainer: {
+    backgroundColor: "#f5f5f5",
+    width: "100%",
+    height: "100%",
+  },
+
   inputContainer: {
     width: "90%",
     height: 200,
@@ -62,6 +68,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 30,
     borderWidth: 1,
+    backgroundColor: "white",
     borderColor: "#fed7aa",
     paddingHorizontal: 16,
     paddingVertical: 24,
