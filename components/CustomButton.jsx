@@ -6,40 +6,55 @@ const CustomButton = (props) => {
     props.onPressHandler();
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      height: props.height,
-      width: props.width,
-      borderRadius: props.borderRadius ? props.borderRadius : 20,
-      backgroundColor: "transparent",
-      overflow: "hidden",
-    },
-    button: {
-      backgroundColor: props.backgroundColor
-        ? props.backgroundColor
-        : "transparent",
-      borderRadius: props.borderRadius ? props.borderRadius : 20,
-      padding: 10,
-      width: "100%",
-    },
-    textStyle: {
-      color: props.textColor ? props.textColor : "white",
-      fontWeight: "bold",
-      textAlign: "center",
-    },
-  });
-
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          height: props.height,
+          width: props.width,
+          borderRadius: props.borderRadius,
+        },
+      ]}
+    >
       <Pressable
-        style={[styles.button, styles.buttonClose]}
+        style={[
+          styles.button,
+          {
+            backgroundColor: props.backgroundColor,
+            borderRadius: props.borderRadius,
+          },
+        ]}
         android_ripple={{ color: "#fed7aa" }}
         onPress={onPressHandler}
       >
-        <Text style={styles.textStyle}>{props.title}</Text>
+        <Text style={[styles.textStyle, { color: props.textColor }]}>
+          {props.title}
+        </Text>
       </Pressable>
     </View>
   );
 };
 
 export default CustomButton;
+
+const styles = StyleSheet.create({
+  container: {
+    height: 50,
+    width: 50,
+    borderRadius: 20,
+    backgroundColor: "transparent",
+    overflow: "hidden",
+  },
+  button: {
+    backgroundColor: "transparent",
+    borderRadius: 20,
+    padding: 10,
+    width: "100%",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});

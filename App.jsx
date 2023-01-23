@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalPlusButton from "./components/GoalPlusButton";
 import AddGoalInput from "./components/AddGoalInput";
@@ -39,7 +39,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <View style={styles.appContainer}>
+      <SafeAreaView style={styles.appContainer}>
         {modalVisible && (
           <AddGoalInput
             setGoalsHandler={formHandler}
@@ -48,6 +48,7 @@ export default function App() {
             setCloseModal={closeModalHandler}
           />
         )}
+
         <GoalPlusButton setShowModal={showModalHandler} />
 
         <View style={styles.goalsContainer}>
@@ -65,7 +66,7 @@ export default function App() {
             }}
           />
         </View>
-      </View>
+      </SafeAreaView>
     </>
   );
 }
@@ -73,13 +74,12 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     backgroundColor: "#f5f5f5",
-    marginTop: 50,
+    marginTop: 0,
     paddingHorizontal: 14,
-    height: "100%",
-    minHeight: "100%",
+    flex: 1,
   },
 
   goalsContainer: {
-    marginTop: 20,
+    marginTop: 40,
   },
 });

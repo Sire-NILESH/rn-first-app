@@ -1,7 +1,16 @@
-import { View, TextInput, Button, Modal, Pressable } from "react-native";
+import {
+  View,
+  Modal,
+  Dimensions,
+  SafeAreaView,
+  KeyboardAvoidingView,
+} from "react-native";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import CustomButton from "./CustomButton";
+import TitleInput from "./TitleInput";
+
+const { height, width } = Dimensions.get("window");
 
 const AddGoalInput = (props) => {
   const [enteredGoal, setEnteredGoal] = useState();
@@ -11,7 +20,7 @@ const AddGoalInput = (props) => {
   }
 
   function formHandler() {
-    if (enteredGoal.trim().length > 0) {
+    if (enteredGoal && enteredGoal.trim().length > 0) {
       const final = enteredGoal.charAt(0).toUpperCase() + enteredGoal.slice(1);
       props.setGoalsHandler(final);
       setEnteredGoal("");
@@ -20,51 +29,61 @@ const AddGoalInput = (props) => {
   }
 
   return (
-    <Modal visible={props.modalVisible} animationType="slide">
-      <View style={styles.modalContainer}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.inputContainer__input}
-            placeholder="Enter goal"
-            onChangeText={inputHandler}
-            value={enteredGoal}
-          />
-          <View style={styles.inputContainer__buttonsContainer}>
-            <CustomButton
-              title="Add to goals"
-              backgroundColor="#eee"
-              textColor="#555"
-              width={150}
-              onPressHandler={formHandler}
-              borderRadius={10}
-            />
-            <CustomButton
-              title="Cancel"
-              backgroundColor="transparent"
-              textColor="#555"
-              width={80}
-              onPressHandler={props.setCloseModal}
-              borderRadius={50}
-            />
+    <SafeAreaView style={styles.centeredView}>
+      <Modal
+        transparent={true}
+        visible={props.modalVisible}
+        animationType="fade"
+      >
+        <KeyboardAvoidingView behavior="position" style={styles.centeredView}>
+          <View style={[styles.inputContainer, styles.modalContainer]}>
+            <TitleInput inputHandler={inputHandler} enteredGoal={enteredGoal} />
+            <View style={styles.inputContainer__buttonsContainer}>
+              <CustomButton
+                title="Add to goals"
+                backgroundColor="#eee"
+                textColor="#555"
+                width={150}
+                onPressHandler={formHandler}
+                borderRadius={10}
+              />
+              <CustomButton
+                title="Cancel"
+                backgroundColor="transparent"
+                textColor="#555"
+                width={80}
+                onPressHandler={props.setCloseModal}
+                borderRadius={50}
+              />
+            </View>
           </View>
-        </View>
-      </View>
-    </Modal>
+        </KeyboardAvoidingView>
+      </Modal>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    width: width,
+    height: height,
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+  },
   modalContainer: {
-    backgroundColor: "#f5f5f5",
-    width: "100%",
-    height: "100%",
+    backgroundColor: "white",
+    marginBottom: 30,
   },
 
   inputContainer: {
-    width: "90%",
+    width: width * 0.9,
     height: 200,
     justifyContent: "space-between",
-    alignItems: "flex-start",
+    alignItems: "center",
     marginHorizontal: 20,
     borderRadius: 30,
     borderWidth: 1,
@@ -72,8 +91,6 @@ const styles = StyleSheet.create({
     borderColor: "#fed7aa",
     paddingHorizontal: 16,
     paddingVertical: 24,
-    position: "absolute",
-    bottom: 30,
   },
 
   inputContainer__input: {

@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const GoalPlusButton = (props) => {
   return (
@@ -8,7 +9,10 @@ const GoalPlusButton = (props) => {
         onPress={props.setShowModal}
         android_ripple={{ color: "#fed7aa" }}
       >
-        <Text style={styles.container__text}>+</Text>
+        {/* <Text style={styles.container__text}>+</Text> */}
+        <View style={styles.container__icon}>
+          <Ionicons name="md-add" size={32} color="white" />
+        </View>
       </Pressable>
     </View>
   );
@@ -18,8 +22,6 @@ const styles = StyleSheet.create({
   container: {
     overflow: "hidden",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
     height: 64,
     width: 64,
     borderRadius: 100,
@@ -40,14 +42,14 @@ const styles = StyleSheet.create({
     elevation: 5,
     // -SHADOW-
   },
-  container__text: {
-    paddingHorizontal: 22,
-    paddingVertical: 10,
-    fontSize: 36,
-    fontWeight: "300",
+  container__icon: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 64,
+    height: 64,
+    border: 5,
+    borderColor: "white",
     borderRadius: 100,
-    // backgroundColor: "red",
-    color: "white",
   },
 });
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "first_project",
-    "slug": "first_project",
+    "name": "Todo",
+    "slug": "todo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,6 +26,25 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    
+      "build": {
+        "preview": {
+          "android": {
+            "buildType": "apk"
+          }
+        },
+        "preview2": {
+          "android": {
+            "gradleCommand": ":app:assembleRelease"
+          }
+        },
+        "preview3": {
+          "developmentClient": true
+        },
+        "production": {}
+      }
+    
+    
   }
 }
